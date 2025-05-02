@@ -10,6 +10,11 @@ import lombok.*;
 @Table(name = "utilisateur")
 public class User {
 
+    public User(String lastName, String firstName) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
+
     @Id
     @GeneratedValue
     private long userId;

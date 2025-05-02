@@ -37,13 +37,13 @@ class ControllerUserTests {
 
     @BeforeEach
     public void setUp(){
-        user = new User(0L,"ROUX","Lilian");
+        user = new User("ROUX","Lilian");
         user = repoUser.save(user);
     }
 
     @Test
     public void getUserByid() throws Exception {
-        mvc.perform(get("/api/user/0"))
+        mvc.perform(get("/api/user/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is(user.getFirstName())));
     }
