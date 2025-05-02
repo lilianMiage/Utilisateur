@@ -8,12 +8,12 @@ import org.springframework.data.annotation.Id;
 
 @Data
 @Builder
-public class Carte {
+public class AccessCard {
 
     @Id
-    private int carteId;
+    private long cardId;
 
-    private int code;
+    private int password;
 
     @OneToOne
     @JoinColumn(name = "userId")
