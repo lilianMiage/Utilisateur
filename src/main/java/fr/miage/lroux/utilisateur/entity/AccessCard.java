@@ -1,9 +1,6 @@
 package fr.miage.lroux.utilisateur.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,10 +10,10 @@ import lombok.Data;
 public class AccessCard {
 
     @Id
+    @GeneratedValue
     private long cardId;
 
-    public AccessCard(long cardId, int password) {
-        this.cardId = cardId;
+    public AccessCard(int password) {
         this.password = password;
     }
 
@@ -27,5 +24,21 @@ public class AccessCard {
     private User user;
 
     public AccessCard() {
+    }
+
+    public long getCardId() {
+        return cardId;
+    }
+
+    public int getPassword() {
+        return password;
+    }
+
+    public void setCardId(long cardId) {
+        this.cardId = cardId;
+    }
+
+    public void setPassword(int password) {
+        this.password = password;
     }
 }

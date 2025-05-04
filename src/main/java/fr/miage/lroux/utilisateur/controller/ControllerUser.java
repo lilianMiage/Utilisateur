@@ -13,7 +13,7 @@ public class ControllerUser {
     @Autowired
     private ServiceUser serviceUser;
 
-    @PostMapping("createclient")
+    @PostMapping("create")
     public User creaUser(@RequestBody User user) throws Exception{
         serviceUser.createUser(user);
         return user;

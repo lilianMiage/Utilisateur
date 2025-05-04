@@ -25,7 +25,7 @@ public class ServiceUser {
             throw new Exception("A user already with this ID" + user.getUserId());
         }
         repoUser.save(user);
-        return null;
+        return user;
     }
 
     /**
