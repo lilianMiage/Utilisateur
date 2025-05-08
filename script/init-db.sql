@@ -1,0 +1,27 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+CREATE DATABASE IF NOT EXISTS `utilisateur` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `utilisateur`;
+-- --------------------------------------------------------
+
+CREATE TABLE `utilisateur` (
+   `userId` BIGINT NOT NULL AUTO_INCREMENT,
+   `lastName` VARCHAR(255) NOT NULL,
+   `firstName` VARCHAR(255) DEFAULT NULL,
+   PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `accessCard` (
+  `cardId` BIGINT NOT NULL AUTO_INCREMENT,
+  `password` INT NOT NULL,
+  `userId` BIGINT NOT NULL,
+  PRIMARY KEY (`cardId`),
+  CONSTRAINT `fk_accessCard_userId` FOREIGN KEY (`userId`) REFERENCES `utilisateur` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

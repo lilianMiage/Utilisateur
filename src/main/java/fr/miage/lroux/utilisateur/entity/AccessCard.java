@@ -13,10 +13,6 @@ public class AccessCard {
     @GeneratedValue
     private long cardId;
 
-    public AccessCard(int password) {
-        this.password = password;
-    }
-
     private int password;
 
     @OneToOne
@@ -26,6 +22,14 @@ public class AccessCard {
     public AccessCard() {
     }
 
+    public AccessCard(int password) {
+        this.password = password;
+    }
+    public AccessCard(long cardId, int password,User user) {
+        this.cardId = cardId;
+        this.password = password;
+        this.user = user;
+    }
     public long getCardId() {
         return cardId;
     }

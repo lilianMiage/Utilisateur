@@ -10,11 +10,6 @@ import lombok.*;
 @Table(name = "utilisateur")
 public class User {
 
-    public User(String lastName, String firstName) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-    }
-
     @Id
     @GeneratedValue
     private long userId;
@@ -23,14 +18,22 @@ public class User {
 
     private String firstName;
 
+    @OneToOne(mappedBy = "user")
+    private AccessCard accessCard;
+
 
     public User() {
     }
 
-    public User(long userId, String lastName, String firstName) {
+    public User(String lastName, String firstName) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
+    public User(long userId, String lastName, String firstName, AccessCard accessCard) {
         this.userId = userId;
         this.lastName = lastName;
         this.firstName = firstName;
+        this.accessCard = accessCard;
     }
 
     public long getUserId() {
