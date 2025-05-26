@@ -14,8 +14,7 @@ public class ControllerAccessCard {
 
     @PostMapping("create")
     public AccessCard createAccessCard(@RequestBody AccessCard accessCard) throws Exception{
-        serviceAccessCard.createAccessCard(accessCard);
-        return accessCard;
+        return serviceAccessCard.createAccessCard(accessCard);
     }
 
     @GetMapping("/{id}")
