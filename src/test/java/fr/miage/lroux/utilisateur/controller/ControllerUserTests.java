@@ -21,6 +21,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Optional;
 
+/**
+ * Test class for the ControllerUser.
+ * This class tests the CRUD operations for User entities.
+ */
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
@@ -28,19 +32,40 @@ import java.util.Optional;
         locations = "classpath:application-integrationtest.properties")
 class ControllerUserTests {
 
+    /**
+     * MockMvc instance for testing the controller.
+     * This instance is used to perform requests and assert responses.
+     */
     @Autowired
     private MockMvc mvc;
 
+    /**
+     * Repository for User operations.
+     * This repository is used to interact with the database for User entities.
+     */
     @Autowired
     private RepoUser repoUser;
+
+    /**
+     * User instance used for testing.
+     * This instance is created before each test to ensure a consistent state.
+     */
     private User user;
 
+    /**
+     * Sets up the test environment by creating a new User instance.
+     * This method is called before each test to ensure a fresh state.
+     */
     @BeforeEach
     public void setUp(){
         user = new User("ROUX","Lilian");
         user = repoUser.save(user);
     }
 
+    /**
+     * Tests the retrieval of a user by ID.
+     * This test checks if the user can be successfully retrieved from the database.
+     */
     @Test
     public void getUserByid() throws Exception {
         mvc.perform(get("/api/user/1"))
@@ -48,6 +73,10 @@ class ControllerUserTests {
                 .andExpect(jsonPath("$.firstName", is(user.getFirstName())));
     }
 
+    /**
+     * Tests the retrieval of a user by ID that does not exist.
+     * This test checks if an exception is thrown when trying to retrieve a non-existent user.
+     */
     @Test
     public void createUser() throws Exception{
         User userObject = new User("TUDELA","Yannis");
@@ -61,6 +90,10 @@ class ControllerUserTests {
                 .andExpect(jsonPath("$.lastName", is(userObject.getLastName())));
     }
 
+    /**
+     * Tests the deletion of a user by ID.
+     * This test checks if the user can be successfully deleted from the database.
+     */
     @Test
     public void deleteUserByid() throws Exception {
         mvc.perform(delete("/api/user/delete/1"))
