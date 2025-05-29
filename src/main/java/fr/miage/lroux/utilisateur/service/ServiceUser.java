@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Service class for managing users.
+ * Provides methods to create, retrieve, and delete users.
+ */
 @Service
 public class ServiceUser {
 
@@ -14,10 +18,10 @@ public class ServiceUser {
     private RepoUser repoUser;
 
     /**
-     * TODO
-     * @param user
-     * @return
-     * @throws Exception
+     * Creates a new user.
+     * @param user The user to be created.
+     * @return The created user.
+     * @throws Exception If a user with the same ID already exists.
      */
     public User createUser(User user) throws Exception {
         Optional<User> userOptional = repoUser.findById(user.getUserId());
@@ -29,10 +33,10 @@ public class ServiceUser {
     }
 
     /**
-     * TODO
-     * @param id
-     * @return
-     * @throws Exception
+     * Retrieves a user by their ID.
+     * @param id The ID of the user to retrieve.
+     * @return The user with the specified ID.
+     * @throws Exception If no user exists with the given ID.
      */
     public User getUserById(Long id) throws Exception{
         Optional<User> userOptional = repoUser.findById(id);
@@ -43,9 +47,9 @@ public class ServiceUser {
     }
 
     /**
-     * TODO
-     * @param id
-     * @throws Exception
+     * Deletes a user by their ID.
+     * @param id The ID of the user to delete.
+     * @throws Exception If no user exists with the given ID.
      */
     public void deleteUserById(Long id) throws Exception{
         Optional<User> userOptional = repoUser.findById(id);
