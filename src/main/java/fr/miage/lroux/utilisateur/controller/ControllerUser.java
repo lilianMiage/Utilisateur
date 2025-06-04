@@ -27,7 +27,7 @@ public class ControllerUser {
      * @return The created user.
      * @throws Exception If an error occurs during user creation.
      */
-    @PostMapping("create")
+    @PostMapping("/create")
     public User creaUser(@RequestBody User user) throws Exception{
         serviceUser.createUser(user);
         return user;

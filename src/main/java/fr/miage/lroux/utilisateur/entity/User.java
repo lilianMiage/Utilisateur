@@ -16,24 +16,21 @@ public class User {
      *  User ID.
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "userId")
     private long userId;
+
     /**
      *  User last name.
      */
+    @Column(name = "lastName")
     private String lastName;
 
     /**
      *  User first name.
      */
+    @Column(name = "firstName")
     private String firstName;
-
-    /**
-     *  Access card associated with the user.
-     */
-    @OneToOne(mappedBy = "user")
-    private AccessCard accessCard;
-
 
     /**
      * Default constructor for JPA.
@@ -53,18 +50,15 @@ public class User {
     }
 
     /**
-     * Constructor for User with userId, lastName, firstName and accessCard.
+     * Constructor for User.
      *
-     * @param userId    User's ID
      * @param lastName  User's last name
      * @param firstName User's first name
-     * @param accessCard Access card associated with the user
      */
-    public User(long userId, String lastName, String firstName, AccessCard accessCard) {
-        this.userId = userId;
+    public User(long id,String lastName, String firstName) {
+        this.userId = id;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.accessCard = accessCard;
     }
 
     /**
@@ -122,7 +116,4 @@ public class User {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-    //TODO
-    // private Voiture une seul par Utilisateur qui a une carte.
 }
