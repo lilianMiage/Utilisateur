@@ -49,7 +49,7 @@ public class ControllerUser {
      * @param id The ID of the user to delete.
      * @throws Exception If the user does not exist.
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable Long id) throws Exception {
         serviceUser.deleteUserById(id);
     }
