@@ -32,6 +32,8 @@ public class User {
     @Column(name = "firstName")
     private String firstName;
 
+    private long accessCardId;
+
     /**
      * Default constructor for JPA.
      */
@@ -59,6 +61,13 @@ public class User {
         this.userId = id;
         this.lastName = lastName;
         this.firstName = firstName;
+    }
+
+    public User(long userId, String lastName, String firstName, long accessCardId) {
+        this.userId = userId;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.accessCardId = accessCardId;
     }
 
     /**

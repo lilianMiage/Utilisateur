@@ -59,4 +59,11 @@ public class ServiceUser {
         repoUser.deleteById(id);
     }
 
+    public User updateAccessCardId(Long userid,long accessCardId) throws Exception {
+        User user = getUserById(userid);
+        user.setAccessCardId(accessCardId);
+        repoUser.save(user);
+        return user;
+    }
+
 }

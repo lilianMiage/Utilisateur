@@ -53,4 +53,9 @@ public class ControllerUser {
     public void deleteUserById(@PathVariable Long id) throws Exception {
         serviceUser.deleteUserById(id);
     }
+
+    @PutMapping("/{id}")
+    public User updateUserAccessCardById(@PathVariable Long id, @RequestBody long accessCardId) throws Exception {
+        return serviceUser.updateAccessCardId(id, accessCardId);
+    }
 }
