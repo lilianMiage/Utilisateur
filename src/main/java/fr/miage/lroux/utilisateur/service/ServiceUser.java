@@ -14,6 +14,10 @@ import java.util.Optional;
 @Service
 public class ServiceUser {
 
+    /**
+     * Repository for User operations.
+     * This repository is used to interact with the database for User entities.
+     */
     @Autowired
     private RepoUser repoUser;
 
@@ -26,7 +30,7 @@ public class ServiceUser {
     public User createUser(User user) throws Exception {
         Optional<User> userOptional = repoUser.findById(user.getUserId());
         if (userOptional.isPresent()){
-            throw new Exception("A user already with this ID" + user.getUserId());
+            throw new Exception("A user already exists with this ID" + user.getUserId());
         }
         repoUser.save(user);
         return user;
@@ -58,4 +62,19 @@ public class ServiceUser {
         }
         repoUser.deleteById(id);
     }
+
+    /** * Updates the access card ID for a user.
+     *
+     * @param userid The ID of the user to update.
+     * @param accessCardId The new access card ID to set for the user.
+     * @return The updated user.
+     * @throws Exception If no user exists with the given ID.
+     */
+    public User updateAccessCardId(Long userid,long accessCardId) throws Exception {
+        User user = getUserById(userid);
+        user.setAccessCardId(accessCardId);
+        repoUser.save(user);
+        return user;
+    }
+
 }

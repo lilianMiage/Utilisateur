@@ -27,7 +27,7 @@ public class ControllerUser {
      * @return The created user.
      * @throws Exception If an error occurs during user creation.
      */
-    @PostMapping("create")
+    @PostMapping("/create")
     public User creaUser(@RequestBody User user) throws Exception{
         serviceUser.createUser(user);
         return user;
@@ -49,8 +49,20 @@ public class ControllerUser {
      * @param id The ID of the user to delete.
      * @throws Exception If the user does not exist.
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable Long id) throws Exception {
         serviceUser.deleteUserById(id);
+    }
+
+    /**
+     * Updates the access card ID for a user.
+     * @param id The ID of the user to update.
+     * @param accessCardId The new access card ID to set for the user.
+     * @return The updated user.
+     * @throws Exception If the user does not exist or if an error occurs during the update.
+     */
+    @PutMapping("/{id}")
+    public User updateUserAccessCardById(@PathVariable Long id, @RequestBody long accessCardId) throws Exception {
+        return serviceUser.updateAccessCardId(id, accessCardId);
     }
 }

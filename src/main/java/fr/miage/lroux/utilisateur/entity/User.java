@@ -6,8 +6,6 @@ import lombok.*;
 /**
  * Entity representing a User.
  */
-@Data
-@Builder
 @Entity
 @Table(name = "utilisateur")
 public class User {
@@ -16,8 +14,9 @@ public class User {
      *  User ID.
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
+
     /**
      *  User last name.
      */
@@ -29,11 +28,9 @@ public class User {
     private String firstName;
 
     /**
-     *  Access card associated with the user.
+     *  Access card ID associated with the user.
      */
-    @OneToOne(mappedBy = "user")
-    private AccessCard accessCard;
-
+    private long accessCardId;
 
     /**
      * Default constructor for JPA.
@@ -53,18 +50,18 @@ public class User {
     }
 
     /**
-     * Constructor for User with userId, lastName, firstName and accessCard.
+     * Constructor for User with userId and accessCardId.
      *
-     * @param userId    User's ID
-     * @param lastName  User's last name
-     * @param firstName User's first name
-     * @param accessCard Access card associated with the user
+     * @param userId        User's ID
+     * @param lastName      User's last name
+     * @param firstName     User's first name
+     * @param accessCardId  Access card ID associated with the user
      */
-    public User(long userId, String lastName, String firstName, AccessCard accessCard) {
+    public User(long userId, String lastName, String firstName, long accessCardId) {
         this.userId = userId;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.accessCard = accessCard;
+        this.accessCardId = accessCardId;
     }
 
     /**
@@ -123,6 +120,22 @@ public class User {
         this.firstName = firstName;
     }
 
-    //TODO
-    // private Voiture une seul par Utilisateur qui a une carte.
+
+    /**
+     * Get the access card associated with the user.
+     *
+     * @return Access card associated with the user
+     */
+    public long getAccessCardId() {
+        return accessCardId;
+    }
+
+    /**
+     * Set the access card associated with the user.
+     *
+     * @param accessCardId Access card associated with the user
+     */
+    public void setAccessCardId(long accessCardId) {
+        this.accessCardId = accessCardId;
+    }
 }
