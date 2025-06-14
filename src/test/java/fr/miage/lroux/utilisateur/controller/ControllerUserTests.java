@@ -96,7 +96,24 @@ class ControllerUserTests {
      */
     @Test
     public void deleteUserByid() throws Exception {
-        mvc.perform(delete("/api/user/delete/1"))
+        mvc.perform(delete("/api/user/1"))
                 .andExpect(status().isOk());
+    }
+
+    /**
+     * Tests the retrieval of a user by ID that does not exist.
+     * This test checks if an exception is thrown when trying to retrieve a non-existent user.
+     */
+    @Test
+    public void updateAccessCardId() throws Exception{
+        long accessCardId = 123456789;
+        user.setAccessCardId(accessCardId);
+        mvc.perform(put("/api/user/1")
+                        .contentType("application/json")
+                        .content(String.valueOf(accessCardId)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName", is(user.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(user.getLastName())))
+                .andExpect(jsonPath("$.accessCardId", is(123456789)));
     }
 }

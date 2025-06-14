@@ -61,7 +61,7 @@ public class ServiceUserTests {
 
         // Act & Assert
         Exception exception = assertThrows(Exception.class, () -> serviceUser.createUser(user));
-        assertEquals("A user already with this ID" + user.getUserId(), exception.getMessage());
+        assertEquals("A user already exists with this ID" + user.getUserId(), exception.getMessage());
         verify(repoUser, times(1)).findById(user.getUserId());
         verify(repoUser, never()).save(user);
     }

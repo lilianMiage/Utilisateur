@@ -6,8 +6,6 @@ import lombok.*;
 /**
  * Entity representing a User.
  */
-@Data
-@Builder
 @Entity
 @Table(name = "utilisateur")
 public class User {
@@ -17,21 +15,21 @@ public class User {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId")
     private long userId;
 
     /**
      *  User last name.
      */
-    @Column(name = "lastName")
     private String lastName;
 
     /**
      *  User first name.
      */
-    @Column(name = "firstName")
     private String firstName;
 
+    /**
+     *  Access card ID associated with the user.
+     */
     private long accessCardId;
 
     /**
@@ -52,17 +50,13 @@ public class User {
     }
 
     /**
-     * Constructor for User.
+     * Constructor for User with userId and accessCardId.
      *
-     * @param lastName  User's last name
-     * @param firstName User's first name
+     * @param userId        User's ID
+     * @param lastName      User's last name
+     * @param firstName     User's first name
+     * @param accessCardId  Access card ID associated with the user
      */
-    public User(long id,String lastName, String firstName) {
-        this.userId = id;
-        this.lastName = lastName;
-        this.firstName = firstName;
-    }
-
     public User(long userId, String lastName, String firstName, long accessCardId) {
         this.userId = userId;
         this.lastName = lastName;
@@ -124,5 +118,24 @@ public class User {
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+
+    /**
+     * Get the access card associated with the user.
+     *
+     * @return Access card associated with the user
+     */
+    public long getAccessCardId() {
+        return accessCardId;
+    }
+
+    /**
+     * Set the access card associated with the user.
+     *
+     * @param accessCardId Access card associated with the user
+     */
+    public void setAccessCardId(long accessCardId) {
+        this.accessCardId = accessCardId;
     }
 }

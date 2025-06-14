@@ -54,6 +54,13 @@ public class ControllerUser {
         serviceUser.deleteUserById(id);
     }
 
+    /**
+     * Updates the access card ID for a user.
+     * @param id The ID of the user to update.
+     * @param accessCardId The new access card ID to set for the user.
+     * @return The updated user.
+     * @throws Exception If the user does not exist or if an error occurs during the update.
+     */
     @PutMapping("/{id}")
     public User updateUserAccessCardById(@PathVariable Long id, @RequestBody long accessCardId) throws Exception {
         return serviceUser.updateAccessCardId(id, accessCardId);
